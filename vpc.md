@@ -3,14 +3,7 @@
  <br>
  
 STEPS:
-    <ol>
-        <li> I guess I do not have much of a choice     </li>
-        <li> Well, I cannot remember the steps I took.      </li>
-        <li> Pheeeewww  </li>    
-        <li>Hopefully, I will get to edit this steps with the real steps.    </li>
-    </ol>
-<br>
-<p> Navigate to the AWS console and setup the VPC </p>
+    <p> Navigate to the AWS console and setup the VPC </p>
 
 <ul> <li> Click "create VPC" </li> </ul>
 
