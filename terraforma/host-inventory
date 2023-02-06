@@ -1,0 +1,7 @@
+[webserver]
+server1      ansible_host=3.227.244.250     ansible_ssh_user=ubuntu    ansible_ssh_private_key_file=~/.ssh/nielahkey.pem
+server2      ansible_host=3.238.192.7       ansible_ssh_user=ubuntu    ansible_ssh_private_key_file=~/.ssh/nielahkey.pem
+server3      ansible_host=3.231.55.66       ansible_ssh_user=ubuntu    ansible_ssh_private_key_file=~/.ssh/nielahkey.pem
+
+
+
