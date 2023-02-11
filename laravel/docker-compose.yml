@@ -48,8 +48,8 @@
       MYSQL_DATABASE: niela
       MYSQL_USER: niela
       MYSQL_ROOT: nielar
-      MYSQL_PASSWORD: niela
-      MYSQL_ROOT_PASSWORD: nielar
+      MYSQL_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: 
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
@@ -64,5 +64,5 @@
         driver: bridge
 
   volumes:
-    db:
+    mysql:
       driver: local
