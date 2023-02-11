@@ -64,5 +64,5 @@
         driver: bridge
 
   volumes:
-    mysql:
+    db:
       driver: local
