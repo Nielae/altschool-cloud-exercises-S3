@@ -1,0 +1,76 @@
+---
+# install Apache2 using Ansible
+- name: Setup Apache server on myservers
+  hosts: webserver
+  become: True
+  vars:
+    apache2_version: 2.4.41
+  tasks:
+    # first task --- instal apache2
+    - name: Install the latest version of apache2
+      command: sudo apt install apache2 apache2-utils -y
+
+    
+    #second task --- start the service
+    - name: Start apache2
+      service:
+        name: apache2
+        enabled: yes
+        state: started
+
+    # third task --- confirm apache2 version
+    - name: Get apache2 installed version
+      command: apache2 -v
+      register: apache2_version
+    
+    # Enabling rewrite
+    - name: Enable new site
+      shell: /usr/sbin/a2ensite {{ http_conf }}
+      
+
+    - name: Disable default Apache site
+      shell: /usr/sbin/a2dissite 000-default.conf
+      when: disable_default
+      notify: Reload Apache
+
+    # forth task --- start status
+    - name: Start apache2 service
+      command: systemctl start apache2
+   
+    # fifth task --- enable apache2
+    - name: Enable apache2 
+      command: systemctl enable apache2
+
+    # sixth task --- confirm status
+    - name: Get the status of apache2 service
+      command: systemctl status apache2
+
+    # seventh task --- set server to Africa/Lagos timezone
+    - name: Set timezone to Africa/Lagos
+      command: timedatectl set-timezone Africa/Lagos
+
+    # eight task --- confirm time zone has been changed correctly
+    - name: Get status of timezone
+      command: timedatectl
+
+    #Install php8.1
+    - name: install php software packages
+      command: apt install lsb-release ca-certificates apt-transport-https software-properties-common -y
+
+    - name: Add repository ppa:ondrej/php
+      apt_repository:
+        repo: "ppa:ondrej/php"
+
+    - name: Updating the repo
+      apt: update_cache=yes
+
+    - name: installing php8.0
+      apt: name=php8.0 state=latest
+
+   
+    #Copy index.php file apache web hosting path
+    - name: copy file to index.php
+      copy:
+        src: /home/vagrant/terraform/ansible/index.php
+        dest: /var/www/html/index.php
+        mode: 0755
