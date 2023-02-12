@@ -1,1 +1,0 @@
-# altschool-cloud-exercises-S3
